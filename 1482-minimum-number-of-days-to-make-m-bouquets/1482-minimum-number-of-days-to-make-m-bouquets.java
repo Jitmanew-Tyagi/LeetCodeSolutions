@@ -1,6 +1,6 @@
 class Solution {
     public int minDays(int[] bloomDay, int m, int k) {
-        int s = min(bloomDay), e = (int)1e9, ans = -1;
+        int s = 1, e = (int)1e9, ans = -1;
         while(s <= e) {
             int mid = s + (e - s) / 2;
             if(completable(bloomDay, mid, m, k)) {
@@ -18,17 +18,10 @@ class Solution {
                k ++;
                if(k == nof) {
                    m++;
-                   k = 0;
-                      
+                   k = 0;    
                }
            } else k = 0;
        }
         return m >= nob;
-    }
-    
-    public int min(int[] wts) {
-        int min = wts[0];
-        for(int i : wts) if(i < min) min = i;
-        return min;
     }
 }
