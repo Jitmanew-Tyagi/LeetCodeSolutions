@@ -1,6 +1,6 @@
 class Solution {
     public int smallestDivisor(int[] piles, int h) {
-        int s = 1, e = maxOfArray(piles);
+        int s = 1, e = (int)1e9;
         int ans = e;
         while(s <= e) {
             int mid = s + ((e - s)/2);
@@ -20,12 +20,6 @@ class Solution {
         for(int nob : piles)
             noh += Math.ceil(nob / (sp * 1.0));
         return noh;
-    }
-    
-    public int maxOfArray(int[] arr) {
-        int max = 0;
-        for(int i : arr) if(i > max) max = i;
-        return max;
     }
     
 }
