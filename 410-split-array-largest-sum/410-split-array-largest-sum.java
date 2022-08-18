@@ -1,9 +1,9 @@
 class Solution {
-    public int splitArray(int[] weights, int days) {
-        int s = max(weights), e = (int)1e9, ans = 1;
+    public int splitArray(int[] nums, int m) {
+        int s = max(nums), e = (int)1e9, ans = 1;
         while(s <= e) {
             int mid = s + (e - s) / 2;
-            if(completable(weights, mid, days)) {
+            if(completable(nums, mid, m)) {
                 ans = mid;
                 e = mid - 1;
             } else s = mid + 1;
