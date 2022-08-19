@@ -3,29 +3,32 @@ class Solution {
         int s = max(weights), e = (int)1e9, ans = 1;
         while(s <= e) {
             int mid = s + (e - s) / 2;
-            if(completable(weights, mid, days)) {
+            if(doable(weights, mid, days) == true)  {
                 ans = mid;
-                e = mid - 1;
-            } else s = mid + 1;
+                e = mid- 1;
+            } else {
+                s = mid + 1;
+            }
         }
         return ans;
     }
     
-    public static boolean completable(int[] arr, int wt, int days) {
-        int w = 0, nod = 1;
-        for(int i : arr) {
-            w += i;
-            if(w > wt) {
-                nod ++;
-                w = i;
+    public boolean doable(int[] wts, int mcap, int days) {
+        int d = 1, cw = 0;
+        for(int i : wts) {
+            cw += i;
+            if(cw > mcap) {
+                d ++;
+                cw = i;
             }
         }
-        return nod <= days;
+        return d <= days;
     }
     
-    public int max(int[] wts) {
-        int max = wts[0];
-        for(int i : wts) if(i > max) max = i;
+    public int max(int[] arr) {
+        int max = arr[0];
+        for(int i : arr) if(i > max) max = i;
         return max;
     }
+    
 }
