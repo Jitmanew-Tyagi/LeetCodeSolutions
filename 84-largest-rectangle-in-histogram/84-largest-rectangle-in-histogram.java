@@ -1,9 +1,9 @@
 class Solution {
-    public int largestRectangleArea(int[] heights) {
+    public static int largestRectangleArea(int[] heights) {
         return computeMaxArea(heights);   
     }
     
-    public int[] nsl(int[] arr) {
+    public static int[] nsl(int[] arr) {
         int n = arr.length;
         int[] ans = new int[n];
         Stack<Integer> st = new Stack<>();
@@ -15,7 +15,7 @@ class Solution {
         return ans;
     }
     
-    public int[] nsr(int[] arr) {
+    public static int[] nsr(int[] arr) {
         int n = arr.length;
         int[] ans = new int[n];
         Stack<Integer> st = new Stack<>();
@@ -27,7 +27,7 @@ class Solution {
         return ans;
     }
     
-    public int computeMaxArea(int[] arr) {
+    public static int computeMaxArea(int[] arr) {
         int n = arr.length;
         int[] nsl = nsl(arr);
         int[] nsr = nsr(arr);
