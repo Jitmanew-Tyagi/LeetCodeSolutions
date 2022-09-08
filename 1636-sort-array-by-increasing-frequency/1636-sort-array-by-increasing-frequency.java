@@ -8,8 +8,8 @@ class Solution {
         Arrays.sort(p);
         int ans[] = new int[nums.length];
         idx = 0;
-        for(Pair ele : p)  {
-            int e = ele.ele, f = ele.freq;
+        for(Pair pairObj : p)  {
+            int e = pairObj.ele, f = pairObj.freq;
             while(f --> 0)
                 ans[idx ++] = e;
         }
@@ -25,8 +25,10 @@ class Solution {
             this.freq = freq;
         }
         
+        @Override
         public int compareTo(Pair other) {
-            if(other.freq == this.freq) return other.ele - this.ele; 
+            if(other.freq == this.freq) 
+                return other.ele - this.ele; 
             return this.freq - other.freq;
         }
     }
