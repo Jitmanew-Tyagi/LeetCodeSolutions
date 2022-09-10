@@ -13,7 +13,6 @@ class Solution {
         }
         return t[k][len - 1];
     }
-    
 
     private int quickSolve(int[] prices) {
         int len = prices.length, profit = 0;
