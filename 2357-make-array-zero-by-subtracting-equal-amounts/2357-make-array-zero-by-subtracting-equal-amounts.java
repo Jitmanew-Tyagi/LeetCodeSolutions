@@ -8,6 +8,7 @@ class Solution {
             for(int i = 0; i < n; i ++) {
                 if(nums[i] != 0) {
                     nums[i] -= ele;
+                    System.out.print(nums[i]);
                 }
             }
         }
