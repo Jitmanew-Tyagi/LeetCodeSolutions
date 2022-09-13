@@ -6,9 +6,7 @@ class Solution {
                 m2 = m1;
                 m1 = i;
             }
-            else if(i > m2) {
-                m2 = i;
-            }
+            else if(i > m2) m2 = i;
         }
         return (m1 - 1) * (m2 - 1);
     }
