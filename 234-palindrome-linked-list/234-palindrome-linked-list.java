@@ -10,8 +10,7 @@
  */
 class Solution {
     public boolean isPalindrome(ListNode head) {
-        ListNode mid = getMid(head);
-        ListNode sh = mid.next;
+        ListNode mid = middleNode(head), sh = mid.next;
         mid.next = null;
         sh = reverseList(sh);
         while(head != null && sh != null) {
@@ -19,20 +18,22 @@ class Solution {
             head = head.next;
             sh = sh.next;
         }
-        return true;
+        return true;        
     }
     
     public ListNode reverseList(ListNode head) {
-        ListNode ansHead = new ListNode(-1, null), temp1 = head;
-        while(temp1 != null) {
-            ListNode tba = new ListNode(temp1.val, ansHead.next);
-            ansHead.next = tba;
-            temp1 = temp1.next;
+        ListNode p = null, c = head, n = head;
+        while(c != null) {
+            n = c.next;
+            c.next = p;
+            p = c;
+            c = n;
         }
-        return ansHead.next;
+        head = p;
+        return head;
     }
     
-    public ListNode getMid(ListNode head) {
+    public ListNode middleNode(ListNode head) {
         ListNode s = head, f = head;
         while(f.next != null && f.next.next != null) {
             s = s.next;
