@@ -11,9 +11,7 @@ class Solution {
             i ++;
         }
         int idx = 0;
-        for(char c : sb.toString().toCharArray()) {
-            chars[idx ++] = c;
-        }
+        for(char c : sb.toString().toCharArray()) chars[idx ++] = c;
         return sb.length();
     }
 }
