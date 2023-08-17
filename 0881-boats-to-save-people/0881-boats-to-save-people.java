@@ -8,7 +8,6 @@ class Solution {
                 l++;
             r--;
         }
-        System.gc();
         return ans;
     }
 }
