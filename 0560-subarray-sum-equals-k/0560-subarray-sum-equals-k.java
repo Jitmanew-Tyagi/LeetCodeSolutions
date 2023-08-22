@@ -8,6 +8,7 @@ class Solution {
                 if(sum == k) ans ++;
             }
         }
+        System.gc();
         return ans;
     }
 }
