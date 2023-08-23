@@ -20,9 +20,6 @@ class Solution {
                 idx += 2;
             }
         }
-        StringBuilder str = new StringBuilder();
-        for(char c : ans) str.append(c);
-        System.gc();
-        return str.toString();
+        return String.valueOf(ans);
     }
 }
