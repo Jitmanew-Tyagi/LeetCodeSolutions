@@ -22,6 +22,7 @@ class Solution {
         }
         StringBuilder str = new StringBuilder();
         for(char c : ans) str.append(c);
+        System.gc();
         return str.toString();
     }
 }
