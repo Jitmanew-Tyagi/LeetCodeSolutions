@@ -1,4 +1,3 @@
-SELECT email as Email
-FROM Person
-GROUP BY email
-HAVING COUNT(email) > 1;
+SELECT DISTINCT(p1.email) as Email
+FROM Person p1, Person p2
+WHERE p1.email = p2.email and p1.id != p2.id
