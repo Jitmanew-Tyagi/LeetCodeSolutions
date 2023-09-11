@@ -1,13 +1,17 @@
 class Solution {
-    public int maxPower(String s) {
-        int i = 0, maxLength = 0;
-        while(i < s.length()) {
-            int j = i + 1;
-            while(j < s.length() && s.charAt(j) == s.charAt(i)) 
-                j ++;
-            maxLength = Math.max(maxLength, j - i);
-            i = j;
+    public int maxPower(String str) {
+        if(str.length() == 1) {
+            return 1;
         }
-        return maxLength;
+        int i=0, j=i+1;
+        int maxLen = -1;
+        while(j < str.length()) {
+            char ch = str.charAt(i);
+            if(str.charAt(j) != ch)
+                i = j;
+            j++;
+            maxLen = Math.max(maxLen, j - i);
+        }
+        return maxLen;
     }
 }
