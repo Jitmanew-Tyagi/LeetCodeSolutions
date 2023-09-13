@@ -1,7 +1,7 @@
 SELECT
-    p.product_name AS product_name,
-    s.year AS year,
-    s.price AS price
+    p.product_name,
+    s.year,
+    s.price
 FROM
     Sales AS s
 LEFT JOIN
