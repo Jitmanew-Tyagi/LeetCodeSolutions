@@ -1,7 +1,6 @@
 class Solution {
     public boolean winnerOfGame(String colors) {
-        int scoreA = 0, scoreB = 0;
-        int j = 0;
+        int scoreA = 0, scoreB = 0, j = 0;
         while(j < colors.length()) {
             int count = 0;
             while(j < colors.length() && colors.charAt(j) == 'A') {
