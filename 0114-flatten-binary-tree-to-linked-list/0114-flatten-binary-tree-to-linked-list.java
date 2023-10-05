@@ -16,21 +16,34 @@
 class Solution {
     public void flatten(TreeNode root) {
         if(root == null) return;
-        TreeNode ans = new TreeNode(-1), temp = ans;
-        List<Integer> nums = new ArrayList<>();
-        rec(root, nums);
-        for(int ele : nums) {
-            temp.right = new TreeNode(ele);
-            temp = temp.right;
-        }
-        if(root.left != null) root.left = null;
-        root.right = ans.right.right;
+        rec(root);
     }
     
-    public void rec(TreeNode root, List<Integer> nums){
-        if(root == null) return;
-        nums.add(root.val);
-        rec(root.left, nums);
-        rec(root.right, nums);
+    public TreeNode rec(TreeNode root){
+        if(root.left == null && root.right == null)  
+            return root;
+        if(root.right == null) {
+            rec(root.left);
+            root.right = root.left;
+            root.left = null;
+            return root;
+        }
+        if(root.left == null) {
+            rec(root.right);
+            return root;
+        }
+        rec(root.left);
+        rec(root.right);
+        TreeNode temp = root.right;
+        root.right = root.left;
+        getTailNode(root.right).right = temp;
+        root.left = null;
+        return root;
+    }
+    
+    public TreeNode getTailNode(TreeNode root) {
+        TreeNode temp = root;
+        while(temp.right != null) temp = temp.right;
+        return temp;
     }
 }
