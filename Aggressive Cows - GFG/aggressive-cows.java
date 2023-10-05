@@ -35,7 +35,7 @@ class GFG {
 class Solution {
     public static int solve(int n, int k, int[] stalls) {
         Arrays.sort(stalls);
-        int min = 1, max = (int)1e9, ans = 0;
+        int min = 1, max = (int)1e9, ans = -1;
         while(min <= max) {
             int mid = min + (max - min) / 2;
             if(completable(stalls, mid, k)) {
@@ -52,8 +52,9 @@ class Solution {
             if(stalls[i] - prev >= dist) {
                 noc ++;
                 prev = stalls[i];
-            }
+            } 
         }
         return noc >= k;
     }
+    
 }
