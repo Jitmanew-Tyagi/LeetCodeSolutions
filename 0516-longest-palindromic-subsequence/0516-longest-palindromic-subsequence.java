@@ -2,8 +2,8 @@ class Solution {
     public int longestPalindromeSubseq(String s) {
         int n = s.length(), dp[][] = new int[n][n];
         for(int[] d : dp) Arrays.fill(d, -1);
-        // return memo(s, 0, n - 1, dp);  
-        return tab(s, 0, n - 1, dp);
+        return memo(s, 0, n - 1, dp);  
+        // return tab(s, 0, n - 1, dp);
     }
     
     public int memo(String str, int s, int e, int[][] dp) {
