@@ -3,7 +3,8 @@ class Solution {
         int[][] dp = new int[word1.length() + 1][word2.length() + 1];
         for(int[] d : dp) Arrays.fill(d, -1);
         // return rec(word1, word2, 0, 0);
-        return memo(word1, word2, 0, 0, dp);
+        // return memo(word1, word2, 0, 0, dp);
+        return tab(word1, word2, 0, 0, dp);
     }
     
     public int rec(String a, String b, int i, int j) {
@@ -21,5 +22,21 @@ class Solution {
         if(a.charAt(i) == b.charAt(j)) return dp[i][j] = memo(a, b, i + 1, j + 1, dp);
         int x = memo(a, b, i + 1, j, dp), y = memo(a, b, i, j + 1, dp);
         return dp[i][j] = Math.min(x, y) + 1;
+    }
+    
+    public int tab(String a, String b, int I, int J, int[][] dp) {
+        for(int i = a.length(); i >= 0; i --) {
+            for(int j = b.length(); j >= 0; j --) {
+                if(i == a.length() || j == b.length()) 
+                    dp[i][j] = Math.max(a.length() - i, b.length() - j);
+                else if(a.charAt(i) == b.charAt(j)) 
+                    dp[i][j] = dp[i + 1][j + 1];
+                else {
+                    int x = memo(a, b, i + 1, j, dp), y = memo(a, b, i, j + 1, dp);
+                    dp[i][j] = Math.min(x, y) + 1;
+                }
+            }
+        }
+        return dp[I][J];
     }
 }
