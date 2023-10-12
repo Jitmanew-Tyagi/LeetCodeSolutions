@@ -25,9 +25,6 @@ class GFG {
 }
 // } Driver Code Ends
 
-
-//User function Template for Java
-
 class Solution {
     static int numOfSubsets(int[] arr, int N, int K) {
         int[][] dp = new int[N + 1][K + 1];
