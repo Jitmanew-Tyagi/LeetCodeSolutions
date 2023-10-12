@@ -21,15 +21,9 @@ class Solution {
     public int tab(int[] a, int[] b, int I, int J, int[][] dp) {
         for(int i = a.length; i >= I; i --) {
             for(int j = b.length; j >= J; j --) {
-                if(i == a.length || j == b.length) {
-                    dp[i][j] = 0;
-                    continue;
-                }
-                if(a[i] == b[j]) {
-                    dp[i][j] = 1 + dp[i + 1][j + 1];
-                    continue;
-                }
-                dp[i][j] = Math.max(dp[i + 1][j], dp[i][j + 1]);
+                if(i == a.length || j == b.length) dp[i][j] = 0;
+                else if(a[i] == b[j]) dp[i][j] = 1 + dp[i + 1][j + 1];
+                else dp[i][j] = Math.max(dp[i + 1][j], dp[i][j + 1]);
             }
         }
         return dp[I][J];
