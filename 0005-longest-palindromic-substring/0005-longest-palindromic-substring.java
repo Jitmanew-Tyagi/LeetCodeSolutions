@@ -2,8 +2,8 @@ class Solution {
     public String longestPalindrome(String s) {
         String[][] dp = new String[s.length()][s.length()];
         // return rec(s, 0, s.length() - 1);
-        // return memo(s, 0, s.length() - 1, dp);
-        return tab(s, 0, s.length() - 1, dp);
+        return memo(s, 0, s.length() - 1, dp);
+        // return tab(s, 0, s.length() - 1, dp);
     }
     
     public String rec(String str, int s, int e) {
