@@ -3,10 +3,10 @@ class Solution {
         HashSet<String> hs = new HashSet<>();
         for(String str : wordDict) hs.add(str);
         // return rec(s, 0, 0, hs);
-        int[] dp = new int[s.length() + 1];
-        Arrays.fill(dp, -1);
-        return memo(s, 0, 0, hs, dp);
-        // return tab(s, 0, 0, hs, new boolean[s.length() + 1][s.length() + 1]);
+        // int[] dp = new int[s.length() + 1];
+        // Arrays.fill(dp, -1);
+        // return memo(s, 0, 0, hs, dp);
+        return tab(s, 0, 0, hs, new boolean[s.length() + 1]);
     }
     
     public boolean rec(String s, int si, int ei, HashSet<String> hs) {
@@ -30,23 +30,23 @@ class Solution {
         return ans;
     }
     
-    public boolean tab(String s, int SI, int EI, HashSet<String> hs, boolean[][] dp) {
+    public boolean tab(String s, int SI, int EI, HashSet<String> hs, boolean[] dp) {
         for(int si = s.length(); si >= SI; si --) {
             for(int ei = s.length(); ei >= EI; ei --) {
                 boolean ans = false;
                 if(ei == s.length()) {
-                    dp[si][ei] = si == s.length();
+                    dp[si] = si == s.length();
                     continue;
                 }
-                if(ei <= si) {
-                    dp[si][ei] = true;
+                if(ei < si) {
+                    // dp[si] = true;
                     continue;
                 }
-                if(hs.contains(s.substring(si, ei + 1))) ans = ans || dp[ei + 1][ei + 1];
-                ans = ans || dp[si][ei + 1];
-                dp[si][ei] = ans;
+                if(hs.contains(s.substring(si, ei + 1))) ans = ans || dp[ei + 1];
+                ans = ans || dp[si];
+                dp[si] = ans;
             }
         }
-        return dp[SI][EI];
+        return dp[SI];
     }
 }
