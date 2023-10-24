@@ -2,8 +2,9 @@ class Solution {
     public int lengthOfLIS(int[] nums) {
         // return rec(nums, 0, -1, 0);
         int ans = 0, n = nums.length, dp[] = new int[n];
-        for(int i = 0; i < n; i ++) ans = Math.max(ans, memo(nums, i, dp));
-        return ans;
+        // for(int i = 0; i < n; i ++) ans = Math.max(ans, memo(nums, i, dp));
+        // return ans;
+        return tab(nums, dp);
     }
     
     // Recursion on the way up
@@ -32,5 +33,19 @@ class Solution {
             if(nums[i] < nums[ei]) ans = Math.max(ans, memo(nums, i, dp) + 1);
         }
         return dp[ei] = ans;
+    }
+    
+    // Tabulation
+    public int tab(int[] nums, int[] dp) {
+        int maxLen = 0;
+        for(int i = 0; i < nums.length; i ++) {
+            int ans = 1;
+            for(int j = i - 1; j >= 0; j --) 
+                if(nums[j] < nums[i]) 
+                    ans = Math.max(ans, dp[j] + 1);
+            dp[i] = ans;
+            maxLen = Math.max(maxLen, ans);
+        }
+        return maxLen;
     }
 }
