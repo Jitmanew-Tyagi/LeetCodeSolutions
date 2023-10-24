@@ -1,49 +1,36 @@
 class Solution {
     public int lengthOfLIS(int[] nums) {
-        // return lisRec(nums, 0, new ArrayList<Integer>());
-        // int ans = 0; 
-        int[] dp = new int[nums.length];
-        // for(int i = 0; i < nums.length; i ++) {
-        //     ans = Math.max(ans, memo(nums, i, dp));
-        // }
-        // return ans;
-        return tab(nums, dp);
+        // return rec(nums, 0, -1, 0);
+        int ans = 0, n = nums.length, dp[] = new int[n];
+        for(int i = 0; i < n; i ++) ans = Math.max(ans, memo(nums, i, dp));
+        return ans;
     }
     
-    public int lisRec(int[] nums, int i, List<Integer> curr) {
-        if(i == nums.length) return curr.size();
-        int inc = 0, exc = 0;
-        if(curr.size() == 0 || curr.get(curr.size() - 1) < nums[i]) {
-            curr.add(nums[i]);
-            inc = lisRec(nums, i + 1, curr);
-            curr.remove(curr.size() - 1);
-        }
-        exc = lisRec(nums, i + 1, curr);
-        return Math.max(inc, exc);
+    // Recursion on the way up
+    public int rec(int[] nums, int i, int last, int len) {
+        if(i == nums.length) return len;
+        int ans = 0;
+        if(i == 0 || nums[i] > last) ans = rec(nums, i + 1, nums[i], len + 1);
+        ans = Math.max(ans, rec(nums, i + 1, last, len));
+        return ans;
     }
     
-    public int memo(int[] nums, int ei, int[] dp) {
-        int maxLen = 1;
-        if(dp[ei] != 0) return dp[ei];
+    // Recursion on the way down
+    public int rec(int[] nums, int ei) {
+        int ans = 1;
         for(int i = ei; i >= 0; i --) {
-            if(nums[i] < nums[ei]) {
-                int len = memo(nums, i, dp);
-                maxLen = Math.max(maxLen, len + 1);
-            }
+            if(nums[i] < nums[ei]) ans = Math.max(ans, rec(nums, i) + 1);
         }
-        return dp[ei] = maxLen;
+        return ans;
     }
     
-    public int tab(int[] nums, int[] dp) {
-        int n = nums.length, maxLength = 0;
-        for(int i = 0; i < n; i ++) {
-            dp[i] = 1;
-            for(int j = i - 1; j >= 0; j --) {
-                if(nums[j] < nums[i]) dp[i] = Math.max(dp[i], dp[j] + 1);
-            }
-            maxLength = Math.max(maxLength, dp[i]);
+    // Memoization
+    public int memo(int[] nums, int ei, int[] dp) {
+        if(dp[ei] != 0) return dp[ei];
+        int ans = 1;
+        for(int i = ei; i >= 0; i --) {
+            if(nums[i] < nums[ei]) ans = Math.max(ans, memo(nums, i, dp) + 1);
         }
-        return maxLength;
+        return dp[ei] = ans;
     }
-    
 }
