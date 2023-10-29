@@ -4,13 +4,13 @@ class Solution {
         boolean[][] vis = new boolean[n][m];
         for(int i = 0; i < n; i ++) {
             for(int j = 0; j < m; j ++) {
-                if(!vis[i][j]) if(consume(grid, i, j, n, m, vis)) return true;
+                if(!vis[i][j]) if(BFS(grid, i, j, n, m, vis)) return true;
             }
         }
         return false;
     }
     
-    public boolean consume(char[][] grid, int i, int j, int n, int m, boolean[][] vis) {
+    public boolean BFS(char[][] grid, int i, int j, int n, int m, boolean[][] vis) {
         Queue<Integer> que = new LinkedList<>();
         que.add(i * m + j);
         int[][] dirn = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
