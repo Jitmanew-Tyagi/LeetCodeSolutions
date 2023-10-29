@@ -4,7 +4,7 @@ class Solution {
         boolean[][] vis = new boolean[n][m];
         for(int i = 0; i < n; i ++) {
             for(int j = 0; j < m; j ++) {
-                if(!vis[i][j]) if(BFS(grid, i, j, n, m, vis)) return true;
+                if(!vis[i][j]) if(DFS(grid, i * m + j, -1, n, m, vis)) return true;
             }
         }
         return false;
@@ -24,6 +24,20 @@ class Solution {
                 if(x >= 0 && y >= 0 && x < n && y < m && grid[x][y] == grid[ti][tj] && !vis[x][y]) 
                     que.add(x * m + y);
             }
+        }
+        return false;
+    }
+    
+    public boolean DFS(char[][] grid, int src, int par, int n, int m, boolean[][] vis) {
+        int i = src / m, j = src % m;
+        int[][] dirn = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+        for(int[] dir : dirn) {
+            int x = i + dir[0], y = j + dir[1];
+            if(x >= 0 && y >= 0 && x < n && y < m && grid[x][y] == grid[i][j] && par != (x * m + y)) {
+                if(vis[x][y]) return true;
+                vis[x][y] = true;
+                if(DFS(grid, x * m + y, src, n, m, vis)) return true;
+            }                
         }
         return false;
     }
