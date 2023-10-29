@@ -4,7 +4,8 @@ class Solution {
         boolean[][] vis = new boolean[n][m];
         for(int i = 0; i < n; i ++) {
             for(int j = 0; j < m; j ++) {
-                if(!vis[i][j]) if(DFS(grid, i * m + j, -1, n, m, vis)) return true;
+                if(!vis[i][j]) if(BFS(grid, i, j, n, m, vis)) return true;
+                // if(!vis[i][j]) if(DFS(grid, i * m + j, -1, n, m, vis)) return true;
             }
         }
         return false;
