@@ -6,7 +6,7 @@ class Solution {
             for(int ele : nums) {
                 if(checkIfOn(ele, i)) count ++;
             }
-            if(count >= k) kor += (int)Math.pow(2, i);
+            if(count >= k) kor = (kor | (1 << i));
         }
         return kor;
     }
