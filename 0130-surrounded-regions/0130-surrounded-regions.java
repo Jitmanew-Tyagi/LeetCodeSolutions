@@ -11,7 +11,6 @@ class Solution {
     public void consume(char[][] board, int i, int j) {
         
         if(i < 0 || j < 0 || i >= board.length || j >= board[0].length || board[i][j] == 'X' || board[i][j] == '$') return;
-        // System.out.println("Called");
         board[i][j] = '$';
         consume(board, i - 1, j);
         consume(board, i + 1, j);
