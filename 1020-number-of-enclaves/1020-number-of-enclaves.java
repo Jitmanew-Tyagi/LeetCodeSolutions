@@ -1,10 +1,10 @@
 class Solution {
     public int numEnclaves(int[][] grid) {
         int n = grid.length, m = grid[0].length;
-        for(int i = 0; i < n; i ++) cnc(grid, i, 0);
-        for(int i = 0; i < n; i ++) cnc(grid, i, m - 1);
-        for(int i = 0; i < m; i ++) cnc(grid, 0, i);
-        for(int i = 0; i < m; i ++) cnc(grid, n - 1, i);
+        for(int i = 0; i < n; i ++) consume(grid, i, 0);
+        for(int i = 0; i < n; i ++) consume(grid, i, m - 1);
+        for(int i = 0; i < m; i ++) consume(grid, 0, i);
+        for(int i = 0; i < m; i ++) consume(grid, n - 1, i);
         
         int ans = 0;
         
@@ -16,15 +16,12 @@ class Solution {
         return ans;
     }
     
-    public int cnc(int[][] arr, int i, int j) {
-        if(i < 0 || j < 0 || i >= arr.length || j >= arr[0].length || arr[i][j] == 0) return 0;
+    public void consume(int[][] arr, int i, int j) {
+        if(i < 0 || j < 0 || i >= arr.length || j >= arr[0].length || arr[i][j] == 0) return;
         arr[i][j] = 0;
-        int ans = 1;
-        ans += cnc(arr, i + 1, j);
-        ans += cnc(arr, i, j + 1);
-        ans += cnc(arr, i - 1, j);
-        ans += cnc(arr, i, j - 1);
-        return ans;
-    }
-    
+        consume(arr, i + 1, j);
+        consume(arr, i, j + 1);
+        consume(arr, i - 1, j);
+        consume(arr, i, j - 1);
+    }    
 }
