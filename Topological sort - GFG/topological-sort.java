@@ -80,7 +80,6 @@ class Solution
     }
     
     public static int[] BFS(int n, ArrayList<ArrayList<Integer>> adj) {
-        boolean vis[] = new boolean[n];
         int ans[] = new int[n], idx = 0, ind[] = new int[n];
         for(int i = 0; i < n; i ++) {
             for(int ele : adj.get(i)) ind[ele] ++;
