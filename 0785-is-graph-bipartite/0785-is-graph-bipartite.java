@@ -3,7 +3,8 @@ class Solution {
         int n = graph.length, vis[] = new int[n];
         Arrays.fill(vis, -1);
         for(int i = 0; i < n; i ++) {
-            if(vis[i] == -1) if(!BFS(graph, i, vis)) return false;
+            // if(vis[i] == -1) if(!BFS(graph, i, vis)) return false;
+            if(vis[i] == -1) if(!DFS(graph, i, vis, 0)) return false;
         }
         return true;
     }
@@ -29,6 +30,13 @@ class Solution {
     
     public boolean DFS(int[][] graph, int s, int[] vis, int col) {
         vis[s] = col;
+        for(int nbr : graph[s]) {
+            if(vis[nbr] != -1 && vis[nbr] == col) return false;
+            if(vis[nbr] == -1){
+                boolean ans = DFS(graph, nbr, vis, (col + 1) % 2);
+                if(!ans) return false;
+            }
+        }
         return true;
     }
 }
