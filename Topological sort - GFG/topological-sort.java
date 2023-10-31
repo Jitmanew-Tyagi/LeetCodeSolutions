@@ -63,18 +63,39 @@ class Solution
     //Function to return list containing vertices in Topological order. 
     static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj) 
     {
-        boolean vis[] = new boolean[V];
-        int ans[] = new int[V], idx = 0;
-        Stack<Integer> st = new Stack<>();
-        for(int i = 0; i < V; i ++) 
-            if(!vis[i]) DFS(i, adj, st, vis);
-        while(!st.isEmpty()) ans[idx ++] = st.pop();
-        return ans;
+        // boolean vis[] = new boolean[V];
+        // int ans[] = new int[V], idx = 0;
+        // Stack<Integer> st = new Stack<>();
+        // for(int i = 0; i < V; i ++) 
+        //     if(!vis[i]) DFS(i, adj, st, vis);
+        // while(!st.isEmpty()) ans[idx ++] = st.pop();
+        // return ans;
+        return BFS(V, adj);
     }
     
     public static void DFS(int s, ArrayList<ArrayList<Integer>> adj, Stack<Integer> st, boolean[] vis) {
         vis[s] = true;
         for(int nbr : adj.get(s)) if(!vis[nbr]) DFS(nbr, adj, st, vis);
         st.push(s);
+    }
+    
+    public static int[] BFS(int n, ArrayList<ArrayList<Integer>> adj) {
+        boolean vis[] = new boolean[n];
+        int ans[] = new int[n], idx = 0, ind[] = new int[n];
+        for(int i = 0; i < n; i ++) {
+            for(int ele : adj.get(i)) ind[ele] ++;
+        }
+        
+        Queue<Integer> que = new LinkedList<>();
+        for(int i = 0; i < n; i ++) if(ind[i] == 0) que.add(i);
+        while(!que.isEmpty()) {
+            int out = que.remove();
+            ans[idx ++] = out;
+            for(int nbr : adj.get(out)) {
+                ind[nbr] --;
+                if(ind[nbr] == 0) que.add(nbr);
+            }
+        }
+        return ans;
     }
 }
