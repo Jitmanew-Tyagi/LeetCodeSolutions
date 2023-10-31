@@ -10,10 +10,7 @@ class Solution {
         while(!que.isEmpty()) {
             int out = que.remove();
             ans[(n - 1) - (idx ++)] = out;
-            for(int nbr : graph[out]) {
-                ind[nbr] --;
-                if(ind[nbr] == 0) que.add(nbr);
-            }
+            for(int nbr : graph[out]) if(--ind[nbr] == 0) que.add(nbr);
         }
         return idx == n ? ans : new int[0];
     }
