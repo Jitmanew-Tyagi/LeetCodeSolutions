@@ -9,6 +9,7 @@ class Solution {
                 ind[i] ++;
             }
         }
+        
         Queue<Integer> que = new LinkedList<>();
         for(int i = 0; i < n; i ++) if(ind[i] == 0) que.add(i);
         while(!que.isEmpty()) {
