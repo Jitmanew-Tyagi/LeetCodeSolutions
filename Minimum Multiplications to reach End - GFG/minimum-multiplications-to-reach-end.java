@@ -29,6 +29,28 @@ class GFG {
     }
 }
 // } Driver Code Ends
+// class Solution {
+//     int minimumMultiplications(int[] arr, int start, int end) {
+//         int ans = 0;
+//         boolean[] vis = new boolean[10000]; 
+//         Queue<Integer> que = new LinkedList<>();
+//         que.add(start);
+//         while(!que.isEmpty()) {
+//             int size = que.size();
+//             while(size --> 0) {
+//                 int out = que.remove();
+//                 vis[out] = true;
+//                 for(int ele : arr) {
+//                     int res = (out * ele) % 10000;
+//                     if(res == end) return ans + 1;
+//                     if(!vis[res]) que.add(res);
+//                 }
+//             }
+//             ans ++;
+//         }
+//         return -1;
+//     }
+// }
 
 class Solution {
     int int_max = (int)1e9;
