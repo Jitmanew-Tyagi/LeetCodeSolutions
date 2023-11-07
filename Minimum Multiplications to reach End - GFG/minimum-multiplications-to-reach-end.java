@@ -29,49 +29,33 @@ class GFG {
     }
 }
 // } Driver Code Ends
-// class Solution {
-//     int minimumMultiplications(int[] arr, int start, int end) {
-//         int ans = 0;
-//         boolean[] vis = new boolean[10000]; 
-//         Queue<Integer> que = new LinkedList<>();
-//         que.add(start);
-//         while(!que.isEmpty()) {
-//             int size = que.size();
-//             while(size --> 0) {
-//                 int out = que.remove();
-//                 vis[out] = true;
-//                 for(int ele : arr) {
-//                     int res = (out * ele) % 10000;
-//                     if(res == end) return ans + 1;
-//                     if(!vis[res]) que.add(res);
-//                 }
-//             }
-//             ans ++;
-//         }
-//         return -1;
-//     }
-// }
+
+
+// User function Template for Java
 
 class Solution {
     int minimumMultiplications(int[] arr, int start, int end) {
-        if(start==end) return 0;
-        Queue<int[]> q = new LinkedList<>();
+        if(start == end) return 0;
         int mod = (int)1e5;
-        boolean[] visited= new boolean[mod+1];
-        visited[start] = true;
-        q.add(new int[]{0,start});
-        
-        while(!q.isEmpty()){
-            int[] front  = q.poll();
-            int step = front[0], curr = front[1];
-            for(int adj: arr){
-                int mul  = (adj*curr)%mod;
-                if(!visited[mul]){
-                    visited[mul] = true;
-                    if(mul==end) return step+1;
-                    q.add(new int[]{step+1,mul});
+        boolean[] vis = new boolean[mod + 1];
+        Queue<Integer> que = new LinkedList<>();
+        que.add(start);
+        vis[start] = true;
+        int ans = 0;
+        while(!que.isEmpty()) {
+            int size = que.size();
+            while(size --> 0) {
+                int out = que.remove();
+                for(int ele : arr) {
+                    int res = (out * ele) % mod;
+                    if(res == end) return ans + 1;
+                    if(!vis[res]) {
+                        vis[res] = true;
+                        que.add(res);
+                    }
                 }
             }
+            ans ++;
         }
         return -1;
     }
