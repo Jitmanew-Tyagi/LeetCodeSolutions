@@ -53,7 +53,6 @@ class GFG {
 // }
 
 class Solution {
-    int int_max = (int)1e9;
     int minimumMultiplications(int[] arr, int start, int end) {
         if(start==end) return 0;
         Queue<int[]> q = new LinkedList<>();
