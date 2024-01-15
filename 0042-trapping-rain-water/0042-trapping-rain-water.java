@@ -1,35 +1,21 @@
 class Solution {
     public int trap(int[] height) {
-        int water = 0;
-        int[] left = getLeft(height);
-        int[] right = getRight(height);
-        for(int i = 0; i < height.length; i ++) {
-            int lb = left[i], rb = right[i];
-            int waterHeld = Math.min(lb, rb) - height[i];
-            if(waterHeld > 0) water += waterHeld;
+        int n = height.length;
+        int totalWater = 0;
+        for(int bar = 0; bar < n; bar ++) {
+            int bh = height[bar];
+            int lb = 0, rb = 0;
+            for(int i = bar - 1; i >= 0; i --) {
+                if(lb < height[i]) lb = height[i];
+            }
+            
+            for(int i = bar + 1; i < n; i ++) {
+                if(rb < height[i]) rb = height[i];
+            }
+            
+            int water = Math.min(lb, rb) - bh;
+            if(water > 0) totalWater += water;
         }
-        return water;
-    }
-    
-    public int[] getLeft(int[] arr) {
-        int n = arr.length;
-        int[] ans = new int[n];
-        int blsf = 0;
-        for(int i = 0; i < n; i ++) {
-            ans[i] = blsf;
-            if(arr[i] > blsf) blsf = arr[i];
-        }
-        return ans;
-    }
-    
-    public int[] getRight(int[] arr) {
-        int n = arr.length;
-        int[] ans = new int[n];
-        int brsf = 0;
-        for(int i = n - 1; i >= 0; i --) {
-            ans[i] = brsf;
-            if(arr[i] > brsf) brsf = arr[i];
-        }
-        return ans;
+        return totalWater;
     }
 }
