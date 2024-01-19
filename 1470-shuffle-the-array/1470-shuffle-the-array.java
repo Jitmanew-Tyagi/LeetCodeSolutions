@@ -1,10 +1,11 @@
 class Solution {
     public int[] shuffle(int[] nums, int n) {
-        int a = 0, b = n, idx = 0;
-        int[] ans = new int[2 * n];
-        while(idx < ans.length) {
-            ans[idx ++] = nums[a ++];
-            ans[idx ++] = nums[b ++];
+        int f = 0, s = nums.length / 2;
+        int idx = 0;
+        int[] ans = new int[nums.length];
+        while(s < nums.length) {
+            ans[idx ++] = nums[f ++];
+            ans[idx ++] = nums[s ++];         
         }
         return ans;
     }
