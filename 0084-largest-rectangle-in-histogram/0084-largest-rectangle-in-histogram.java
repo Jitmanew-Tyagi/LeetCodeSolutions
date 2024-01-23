@@ -1,9 +1,9 @@
 class Solution {
     public int largestRectangleArea(int[] heights) {
-        return getMaxArea(heights);
+        return maxArea(heights);
     }
     
-    public static int[] leftBoundaries(int[] arr) {
+    public int[] leftBound(int[] arr) {
         int n = arr.length, ans[] = new int[n];
         Stack<Integer> st = new Stack<>();
         for(int i = 0; i < n; i ++) {
@@ -15,7 +15,7 @@ class Solution {
         return ans;
     }
     
-    public static int[] rightBoundaries(int[] arr) {
+    public int[] rightBound(int[] arr) {
         int n = arr.length, ans[] = new int[n];
         Stack<Integer> st = new Stack<>();
         for(int i = n - 1; i >= 0; i --) {
@@ -27,14 +27,14 @@ class Solution {
         return ans;
     }
     
-    public int getMaxArea(int[] arr) {
-        int maxArea = 0;
-        int[] left = leftBoundaries(arr);
-        int[] right = rightBoundaries(arr);
-        for(int i = 0; i < arr.length; i ++) {
+    public int maxArea(int[] arr) {
+        int[] left = leftBound(arr);
+        int[] right = rightBound(arr);
+        int n = arr.length, maxArea = 0;
+        for(int i = 0; i < n; i ++) {
             int width = right[i] - left[i] - 1;
             int height = arr[i];
-            int area = width * height;
+            int area = height * width;
             maxArea = Math.max(maxArea, area);
         }
         return maxArea;
