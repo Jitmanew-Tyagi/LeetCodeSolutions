@@ -4,14 +4,13 @@ class Solution {
         for(int ast : asteroids) {
             if(ast > 0) st.push(ast);
             else {
-                int mag = -ast;
-                while(!st.isEmpty() && st.peek() > 0 && st.peek() < mag) st.pop();
+                while(!st.isEmpty() && st.peek() > 0 && st.peek() < -ast) st.pop();
                 if(st.isEmpty() || st.peek() < 0) st.push(ast);
-                else if(st.peek() == mag) st.pop(); 
+                else if(-ast == st.peek()) st.pop();
             }
         }
-        int n = st.size(), idx = 0;
-        int[] ans = new int[n];
+        int[] ans = new int[st.size()];
+        int idx = 0;
         for(int ast : st) ans[idx ++] = ast;
         return ans;
     }
