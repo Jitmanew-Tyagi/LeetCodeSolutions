@@ -6,8 +6,8 @@ class MinStack {
     }
     
     public void push(int val) {
-        main.push(val);
         if(min.isEmpty() || val <= min.peek()) min.push(val);
+        main.push(val);
     }
     
     public void pop() {
@@ -20,7 +20,7 @@ class MinStack {
     }
     
     public int getMin() {
-        return min.peek();
+        return min.peek();   
     }
 }
 
