@@ -4,14 +4,13 @@ class Solution {
         Stack<String> st = new Stack<>();
         for(String s : arr) {
             if(s.length() == 0 || s.equals(".")) continue;
-            if(s.equals("..")){
-                if(!st.isEmpty()) st.pop(); 
-            }
-            else st.push(s);
+            else if(s.equals("..")) {
+                if(!st.isEmpty()) st.pop();
+            } else st.push(s);
         }
         if(st.isEmpty()) return "/";
         String ans = "";
-        for(String s : st) ans += "/" + s;
+        for(String dir : st) ans += "/" + dir;
         return ans;
     }
 }
