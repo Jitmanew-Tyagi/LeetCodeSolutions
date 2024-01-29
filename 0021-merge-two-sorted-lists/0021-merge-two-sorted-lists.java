@@ -15,7 +15,7 @@ class Solution {
             if(h1.val <= h2.val) {
                 temp.next = new ListNode(h1.val);
                 h1 = h1.next;
-            } else  {
+            } else {
                 temp.next = new ListNode(h2.val);
                 h2 = h2.next;
             }
