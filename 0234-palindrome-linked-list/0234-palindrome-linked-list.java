@@ -10,20 +10,17 @@
  */
 class Solution {
     public boolean isPalindrome(ListNode head) {
-        ListNode copy = getDeepCopy(head);
-        copy = reverseList(copy);
-        return compareLists(head, copy);
+        
+        ListNode slow = head, fast = head;
+        while(fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode sh = slow.next;
+        sh = reverseList(sh);
+        return compareLists(head, sh);
     }
     
-    public ListNode getDeepCopy(ListNode head) {
-        ListNode ans = new ListNode(-1), temp = ans;
-        while(head != null) {
-            temp.next = new ListNode(head.val);
-            head = head.next;
-            temp = temp.next;
-        }
-        return ans.next;
-    }
     
     public ListNode reverseList(ListNode head) {
         ListNode prev = null;
