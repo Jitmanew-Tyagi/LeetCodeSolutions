@@ -10,36 +10,42 @@
  */
 class Solution {
     public boolean isPalindrome(ListNode head) {
-        ListNode duplicate = getDeepCopy(head);
-        duplicate = reverse(duplicate);
-        ListNode h1 = head, h2 = duplicate;
-        while(h1 != null && h2 != null) {
-            if(h1.val != h2.val) return false;
-            h1 = h1.next;
-            h2 = h2.next;
-        }
-        return true;
+        ListNode copy = getDeepCopy(head);
+        copy = reverseList(copy);
+        return compareLists(head, copy);
     }
     
     public ListNode getDeepCopy(ListNode head) {
-        ListNode ans = new ListNode(-1), h1 = head, temp = ans;
-        while(h1 != null) {
-            temp.next = new ListNode(h1.val);
+        ListNode ans = new ListNode(-1), temp = ans;
+        while(head != null) {
+            temp.next = new ListNode(head.val);
+            head = head.next;
             temp = temp.next;
-            h1 = h1.next;
         }
         return ans.next;
     }
     
-    public ListNode reverse(ListNode head) {
-        ListNode prev = null, curr = head, fwd = null;
-        while(curr != null) {
-            fwd = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = fwd;
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode current = head;
+
+        while (current != null) {
+            ListNode fwd = current.next;
+            current.next = prev;
+            prev = current;
+            current = fwd;
         }
-        return prev;
+        return prev; // The new head of the reversed list
     }
     
+    public boolean compareLists(ListNode list1, ListNode list2) {
+        while (list2 != null) {
+            if (list1.val != list2.val) {
+                return false;
+            }
+            list1 = list1.next;
+            list2 = list2.next;
+        }
+        return true;
+    }
 }
