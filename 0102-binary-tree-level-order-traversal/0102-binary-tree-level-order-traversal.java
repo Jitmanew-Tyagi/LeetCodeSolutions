@@ -30,7 +30,6 @@ class Solution {
             }
             ans.add(sublist);
         }
-        System.out.println(ans);
         return ans;
     }
 }
