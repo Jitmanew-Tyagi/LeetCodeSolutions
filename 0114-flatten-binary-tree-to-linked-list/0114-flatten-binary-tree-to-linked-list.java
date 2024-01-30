@@ -15,35 +15,29 @@
  */
 class Solution {
     public void flatten(TreeNode root) {
+        
         if(root == null) return;
-        rec(root);
-    }
-    
-    public TreeNode rec(TreeNode root){
-        if(root.left == null && root.right == null)  
-            return root;
+        if(root.left == null) {
+            flatten(root.right);
+            return;
+        }
         if(root.right == null) {
-            rec(root.left);
+            flatten(root.left);
             root.right = root.left;
             root.left = null;
-            return root;
+            return;
         }
-        if(root.left == null) {
-            rec(root.right);
-            return root;
-        }
-        rec(root.left);
-        rec(root.right);
+        flatten(root.left);
+        flatten(root.right);
+        
         TreeNode temp = root.right;
         root.right = root.left;
-        getTailNode(root.right).right = temp;
+        getTail(root.left).right = temp;
         root.left = null;
-        return root;
     }
     
-    public TreeNode getTailNode(TreeNode root) {
-        TreeNode temp = root;
-        while(temp.right != null) temp = temp.right;
-        return temp;
+    public TreeNode getTail(TreeNode root) {
+        while(root.right != null) root = root.right;
+        return root;
     }
 }
