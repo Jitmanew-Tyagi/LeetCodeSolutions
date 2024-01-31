@@ -28,10 +28,10 @@ class Solution {
         que.add(root);
         while(!que.isEmpty()) {
             int size = que.size();
-            while(size --> 0) {
+            for(int i = 1; i <= size; i ++) {
                 Node out = que.remove();
-                if(size > 0) out.next = que.peek();
-                else out.next = null;
+                if(i == size) out.next = null;
+                else out.next = que.peek();
                 if(out.left != null) que.add(out.left);
                 if(out.right != null) que.add(out.right);
             }
