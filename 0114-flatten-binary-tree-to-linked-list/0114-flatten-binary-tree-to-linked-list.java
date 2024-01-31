@@ -15,7 +15,6 @@
  */
 class Solution {
     public void flatten(TreeNode root) {
-        
         if(root == null) return;
         if(root.left == null) {
             flatten(root.right);
@@ -27,16 +26,17 @@ class Solution {
             root.left = null;
             return;
         }
+        
         flatten(root.left);
         flatten(root.right);
         
         TreeNode temp = root.right;
         root.right = root.left;
-        getTail(root.left).right = temp;
+        getTailNode(root.left).right = temp;
         root.left = null;
     }
     
-    public TreeNode getTail(TreeNode root) {
+    public TreeNode getTailNode(TreeNode root) {
         while(root.right != null) root = root.right;
         return root;
     }
