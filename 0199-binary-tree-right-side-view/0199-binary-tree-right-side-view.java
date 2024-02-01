@@ -22,9 +22,9 @@ class Solution {
         que.add(root);
         while(!que.isEmpty()) {
             int size = que.size();
-            while(size --> 0) {
+            for(int i = 1; i <= size; i ++) {
                 TreeNode out = que.remove();
-                if(size == 0) ans.add(out.val);
+                if(i == size) ans.add(out.val);
                 if(out.left != null) que.add(out.left);
                 if(out.right != null) que.add(out.right);
             }
