@@ -14,15 +14,15 @@
  * }
  */
 class Solution {
-    public TreeNode convertBST(TreeNode root) {
-        helper(root, 0);
-        return root;
-    }
     
-    public int helper(TreeNode root, int sum) {
-        if(root == null) return sum;
-        int rightAns = helper(root.right, sum);
-        root.val += rightAns;
-        return helper(root.left, root.val);
+    int sum = 0;
+    
+    public TreeNode convertBST(TreeNode root) {
+        if(root == null) return null;
+        convertBST(root.right);
+        root.val += sum;
+        sum = root.val;
+        convertBST(root.left);
+        return root;
     }
 }
