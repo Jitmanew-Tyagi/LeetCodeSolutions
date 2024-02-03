@@ -19,15 +19,13 @@ class Node {
 
 class Solution {
     public List<Integer> preorder(Node root) {
-        
         List<Integer> ans = new ArrayList<>();
-        helper(root, ans);
-        return ans;
-    }
-    
-    public void helper(Node root, List<Integer> ans) {
-        if(root == null) return;
+        if(root == null) return ans;
         ans.add(root.val);
-        for(Node child : root.children) helper(child, ans);
+        for(Node child : root.children) {
+            List<Integer> faith = preorder(child);
+            for(int ele : faith) ans.add(ele);
+        }
+        return ans;
     }
 }
