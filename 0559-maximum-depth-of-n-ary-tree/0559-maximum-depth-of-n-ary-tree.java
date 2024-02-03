@@ -22,8 +22,9 @@ class Solution {
         if(root == null) return 0;
         int maxChildHeight = 0;
         for(Node child : root.children) {
-            maxChildHeight = Math.max(maxChildHeight, maxDepth(child));
+            int childHt = maxDepth(child);
+            maxChildHeight = Math.max(childHt, maxChildHeight);
         }
-        return 1 + maxChildHeight;
+        return maxChildHeight + 1;
     }
 }
