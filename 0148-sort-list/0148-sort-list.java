@@ -13,19 +13,20 @@ class Solution {
         if(head == null || head.next == null) return head;
         ListNode mid = getMid(head), midNext = mid.next;
         mid.next = null;
-        ListNode a = sortList(head), b = sortList(midNext);
-        return mergeTwoSortedLists(a, b);
+        ListNode a = sortList(head);
+        ListNode b = sortList(midNext);
+        
+        return mergeSortedLists(a, b);
     }
     
-    public ListNode mergeTwoSortedLists(ListNode a, ListNode b) {
-        ListNode ans = new ListNode(-1);
-        ListNode h1 = a, h2 = b, temp = ans;
+    public ListNode mergeSortedLists(ListNode a, ListNode b) {
+        ListNode ans = new ListNode(-1), temp = ans;
+        ListNode h1 = a, h2 = b;
         while(h1 != null && h2 != null) {
-            if(h1.val < h2.val)  {
+            if(h1.val < h2.val) {
                 temp.next = new ListNode(h1.val);
                 h1 = h1.next;
-            }
-            else {
+            } else {
                 temp.next = new ListNode(h2.val);
                 h2 = h2.next;
             }
@@ -35,13 +36,12 @@ class Solution {
             temp.next = new ListNode(h1.val);
             h1 = h1.next;
             temp = temp.next;
-        }
+        } 
         while(h2 != null) {
             temp.next = new ListNode(h2.val);
             h2 = h2.next;
             temp = temp.next;
         }
-        
         return ans.next;
     }
     
