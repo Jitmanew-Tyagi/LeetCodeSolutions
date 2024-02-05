@@ -1,26 +1,29 @@
 class MyStack {
-    Queue<Integer> main, helper;
+    Queue<Integer> que;
     public MyStack() {
-        main = new LinkedList<>();
-        helper = new LinkedList<>();
+        que = new LinkedList<>();
     }
     
-    public void push(int x) { //?
-        while(!main.isEmpty()) helper.add(main.remove());
-        main.add(x);
-        while(!helper.isEmpty()) main.add(helper.remove());
+    public void push(int x) { //O(n)
+        que.add(x);
     }
     
     public int pop() {
-        return main.remove();
+        int size = que.size();
+        while(size --> 1) que.add(que.remove());
+        return que.remove();
     }
     
     public int top() {
-        return main.peek();
+        int size = que.size();
+        while(size --> 1) que.add(que.remove());
+        int ele = que.remove();
+        que.add(ele);
+        return ele;
     }
     
     public boolean empty() {
-        return main.isEmpty();
+        return que.isEmpty();
     }
 }
 
