@@ -1,34 +1,31 @@
 class FrontMiddleBackQueue {
-    List<Integer> list;
+    List<Integer> que;
     public FrontMiddleBackQueue() {
-        list = new ArrayList<>();
+        que = new ArrayList<>();
     }
     
     public void pushFront(int val) {
-        list.add(0, val);
+        que.add(0, val);
     }
     
     public void pushMiddle(int val) {
-        list.add(list.size() / 2, val);
+        que.add(que.size() / 2, val);
     }
     
     public void pushBack(int val) {
-        list.add(val);
+        que.add(val);
     }
     
     public int popFront() {
-        if(list.size() == 0) return -1;
-        return list.remove(0);
+        return que.isEmpty() ? -1 : que.remove(0);
     }
     
     public int popMiddle() {
-        if(list.size() == 0) return -1;
-        return list.remove((list.size() - 1)/ 2);   
+        return que.isEmpty() ? -1 : que.remove((que.size() - 1) / 2) ;
     }
     
     public int popBack() {
-        if(list.size() == 0) return -1;
-        return list.remove(list.size() - 1);
+        return que.isEmpty() ? -1 : que.remove(que.size() - 1) ;
     }
 }
 
