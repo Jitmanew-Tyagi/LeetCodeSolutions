@@ -7,7 +7,7 @@ class Solution {
             int fp = que.remove();
             tickets[fp] --;
             time ++;
-            if(fp == k && tickets[fp] == 0) return time;
+            if(tickets[fp] == 0 && fp == k) return time;
             if(tickets[fp] > 0) que.add(fp);
         }
         return time;
