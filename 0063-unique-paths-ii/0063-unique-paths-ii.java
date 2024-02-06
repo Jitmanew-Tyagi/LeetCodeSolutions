@@ -1,28 +1,27 @@
 class Solution {
-    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-        if(obstacleGrid[0][0] == 1 || obstacleGrid[obstacleGrid.length - 1][obstacleGrid[0].length - 1] == 1) 
-            return 0;
-        int[][] dirns = {{1, 0}, {0, 1}};
-        int[][] dp = new int[obstacleGrid.length + 1][obstacleGrid[0].length + 1];
+    public int uniquePathsWithObstacles(int[][] grid) {
+        // return rec(0, 0, obstacleGrid);
+        int[][] dp = new int[grid.length + 1][grid[0].length + 1];
         for(int[] d : dp) Arrays.fill(d, -1);
-        return rec(obstacleGrid, 0, 0, dirns, dp);
+        return memo(0, 0, grid, dp);
     }
     
-    public int rec(int[][] maze, int i, int j, int[][] dirns, int[][] dp) {
-       for(i = maze.length - 1; i >= 0; i --) {
-           for(j = maze[0].length; j >= 0; j --) {
-               
-               if(i == maze.length - 1 && j == maze[0].length - 1) {
-                     dp[i][j] = 1;
-                   continue;
-               }
-               int count = 0;
-               for(int[] dir : dirns) 
-                    if(i + dir[0] < maze.length && j + dir[1] < maze[0].length && maze[i + dir[0]][j + dir[1]] == 0)
-                        count += dp[i + dir[0]][j + dir[1]];
-               dp[i][j] = count;
-           }
-       }
-       return dp[0][0];        
+    public int rec(int i, int j, int[][] grid) {
+        if(i >= grid.length || j >= grid[0].length || grid[i][j] == 1) return 0;
+        if(i == grid.length - 1 && j == grid[0].length - 1) return 1;
+        int ans = 0;
+        ans += rec(i + 1, j, grid);
+        ans += rec(i, j + 1, grid);
+        return ans;
+    }
+    
+    public int memo(int i, int j, int[][] grid, int[][] dp) {
+        if(i >= grid.length || j >= grid[0].length || grid[i][j] == 1) return dp[i][j] = 0;
+        if(i == grid.length - 1 && j == grid[0].length - 1) return dp[i][j] = 1;
+        if(dp[i][j] != -1) return dp[i][j];
+        int ans = 0;
+        ans += memo(i + 1, j, grid, dp);
+        ans += memo(i, j + 1, grid, dp);
+        return dp[i][j] = ans;
     }
 }
