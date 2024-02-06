@@ -2,7 +2,7 @@ class Solution {
     public int fib(int n) {
         // return rec(n);
         int[] dp = new int[n + 1];
-        return memo(n, dp);
+        return tab(n, dp);
     }
     
     public int rec(int n) {
@@ -18,5 +18,15 @@ class Solution {
         int f1 = memo(n - 1, dp);
         int f2 = memo(n - 2, dp);
         return dp[n] = f1 + f2;
+    }
+    
+    public int tab(int n, int[] dp) {
+        for(int i = 0; i <= n; i ++) {
+            if(i <= 1) dp[i] = i;
+            else {
+                dp[i] = dp[i - 1] + dp[i - 2];
+            }
+        }
+        return dp[n];
     }
 }
