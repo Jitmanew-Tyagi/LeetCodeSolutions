@@ -1,6 +1,8 @@
 class Solution {
     public int fib(int n) {
-        return rec(n);
+        // return rec(n);
+        int[] dp = new int[n + 1];
+        return memo(n, dp);
     }
     
     public int rec(int n) {
