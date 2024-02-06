@@ -20,13 +20,27 @@ class Solution {
         return dp[n] = f1 + f2;
     }
     
-    public int tab(int n, int[] dp) {
-        for(int i = 0; i <= n; i ++) {
-            if(i <= 1) dp[i] = i;
-            else {
-                dp[i] = dp[i - 1] + dp[i - 2];
+    public int tab(int N, int[] dp) {
+        for(int n = 0; n <= N; n ++) {
+            if(n <= 1){
+               dp[n] = n;
+                continue;
             }
+            int f1 = dp[n - 1];//memo(n - 1, dp);
+            int f2 = dp[n - 2];//memo(n - 2, dp);
+            dp[n] = f1 + f2;
         }
-        return dp[n];
+        
+        return dp[N];
     }
+    
+    // public int tab(int n, int[] dp) {
+    //     for(int i = 0; i <= n; i ++) {
+    //         if(i <= 1) dp[i] = i;
+    //         else {
+    //             dp[i] = dp[i - 1] + dp[i - 2];
+    //         }
+    //     }
+    //     return dp[n];
+    // }
 }
