@@ -12,6 +12,7 @@ class Solution {
             ans.add(base);
             return base;
         }
+        
         List<Integer> faith = rec(n - 1, ans);
         List<Integer> exp = new ArrayList<>();
         exp.add(1);
