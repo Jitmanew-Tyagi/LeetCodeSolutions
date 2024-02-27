@@ -1,5 +1,5 @@
 class Solution {
-        public long maximumSumOfHeights(List<Integer> listOfHeights) {
+    public long maximumSumOfHeights(List<Integer> listOfHeights) {
         
         int a[]=new int[listOfHeights.size()];
         for(int i=0;i<listOfHeights.size();i++)a[i]=listOfHeights.get(i);
