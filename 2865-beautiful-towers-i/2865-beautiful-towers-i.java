@@ -1,21 +1,30 @@
 class Solution {
-    public long maximumSumOfHeights(List<Integer> mh) {
-        long ans = -1;
-        for(int b = 0; b < mh.size(); b ++) {
-            int ch = mh.get(b), lm = ch, rm = ch;
-            long tf = ch;
-            for(int i = b - 1; i >= 0; i --) {
-                if(mh.get(i) < lm) lm = mh.get(i);
-                tf += lm;
+        public long maximumSumOfHeights(List<Integer> listOfHeights) {
+        
+        int a[]=new int[listOfHeights.size()];
+        for(int i=0;i<listOfHeights.size();i++)a[i]=listOfHeights.get(i);
+        long Total=0;
+
+        for(int i=0;i<a.length;i++){
+            long count=0;
+            long max=a[i];
+            for(int j=i;j>=0;j--){
+                if(a[j]<=max){
+                    max=a[j];
+                    count+=max;
+                }else count+=max;
             }
-            
-            for(int i = b + 1; i < mh.size(); i ++) {
-                if(mh.get(i) < rm) rm = mh.get(i);
-                tf += rm;
+            max=a[i];
+            for(int j=i+1;j<a.length;j++){
+                    if(a[j]<=max){
+                        max=a[j];
+                        count+=max;
+                    }else count+=max;
             }
-            
-            ans = Math.max(tf, ans);
+                    
+            Total=Math.max(Total,count);
         }
-        return ans;
+
+        return Total;
     }
 }
