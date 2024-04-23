@@ -1,10 +1,11 @@
 class Solution {
-    public int numIdenticalPairs(int[] nums) {
-        int hm[] = new int[101], ans = 0;
-        for(int ele : nums) {
-            ans += hm[ele];
-            hm[ele] ++;
+    public int numIdenticalPairs(int[] arr) {
+        int count = 0;
+        for(int i = 0; i < arr.length; i ++) {
+            for(int j = i + 1; j < arr.length; j ++) {
+                if(arr[i] == arr[j]) count ++;
+            }
         }
-        return ans;
+        return count;
     }
 }
