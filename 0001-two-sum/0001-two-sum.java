@@ -1,11 +1,11 @@
 class Solution {
-    public int[] twoSum(int[] arr, int target) {
-        int n = arr.length;
+    public int[] twoSum(int[] nums, int target) {
+        int n = nums.length;
         for(int i = 0; i < n; i ++) {
             for(int j = i + 1; j < n; j ++) {
-                if(arr[i] + arr[j] == target) return new int[]{i, j};
+                if(nums[i] + nums[j] == target) return new int[] {i, j};
             }
         }
-        return new int[0];
+        return new int[]{};
     }
 }
