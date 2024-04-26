@@ -1,15 +1,20 @@
 class Solution {
     public int reverse(int x) {
-        long temp = x;
+        boolean isNeg = x < 0;
+        int n = x > 0 ? x : -x;
+        
+        n = reverseHelper(n);
+        
+        return isNeg ? -n : n;
+    }
+    
+    public int reverseHelper(int n) {
         long ans = 0;
-        boolean isNeg = temp < 0;
-        if(temp < 0) temp *= -1; 
-        while(temp > 0) {
-            ans = ans * 10 + (temp % 10);
-            temp /= 10;
+        while(n > 0) {
+            ans = (ans * 10) + (n % 10);
+            n /= 10;
         }
-        if(isNeg) ans *= -1;
-        if(ans > Integer.MAX_VALUE || ans < Integer.MIN_VALUE) return 0;
-        return (int)ans;
+        
+        return ans > Integer.MAX_VALUE ? 0 : (int) ans;
     }
 }
