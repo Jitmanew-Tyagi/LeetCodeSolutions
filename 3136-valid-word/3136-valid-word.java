@@ -4,8 +4,8 @@ class Solution {
         boolean v = false, c = false;
         int noc = 0;
         for(char ch : word.toCharArray()) {
+            ch = Character.toLowerCase(ch);
             if((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) {
-                ch = Character.toLowerCase(ch);
                 if(isVovel(ch)) v = true;
                 else c = true;
                 noc ++;
