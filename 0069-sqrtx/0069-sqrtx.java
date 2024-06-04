@@ -1,16 +1,16 @@
 class Solution {
     public int mySqrt(int x) {
-        int s = 0, e = x;
-        int ans = -1;
-        while(s <= e) {
-           int mid = s + (e - s) / 2;
-           long sq = mid;
+        int min = 0, max = x;
+        int ans = 0;
+        while(min <= max) {
+            int mid = min + (max - min) / 2; //(min + max) / 2;
+            long sq = mid;
             sq *= sq;
             if(sq <= x) {
-                ans = mid;
-                s = mid + 1;
+                ans = mid; 
+                min = mid + 1;
             }
-            else e = mid - 1;
+            else max = mid - 1;
         }
         return ans;
     }
