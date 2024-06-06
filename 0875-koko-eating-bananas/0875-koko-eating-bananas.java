@@ -1,6 +1,6 @@
 class Solution {
     public int minEatingSpeed(int[] piles, int h) {
-        int min = 1, max = maxOfArray(piles);
+        int min = 1, max = (int)1e9;
         int ans = -1;
         while(min <= max) {
             int mid = min + (max - min) / 2;
