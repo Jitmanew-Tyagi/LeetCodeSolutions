@@ -24,6 +24,7 @@ class Solution {
         int hours = 0;
         for(int nob : arr) {
             hours += Math.ceil(nob / (speed * 1.0));
+            if(hours > totalHours) return false; 
         }
         return hours <= totalHours;
     }
