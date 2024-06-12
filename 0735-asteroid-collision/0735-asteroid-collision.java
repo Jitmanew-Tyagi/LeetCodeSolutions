@@ -10,8 +10,8 @@ class Solution {
             }
         }
         int[] ans = new int[st.size()];
-        int idx = st.size() - 1;
-        while(!st.isEmpty()) ans[idx --] = st.pop();
+        int idx = 0;
+        for(int ast : st) ans[idx ++] = ast;
         return ans;        
     }
 }
