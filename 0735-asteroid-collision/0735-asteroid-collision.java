@@ -6,12 +6,12 @@ class Solution {
             else {
                 while(!st.isEmpty() && st.peek() > 0 && st.peek() < -ast) st.pop();
                 if(st.isEmpty() || st.peek() < 0) st.push(ast);
-                else if(-ast == st.peek()) st.pop();
+                if(st.peek() == -ast) st.pop();
             }
         }
         int[] ans = new int[st.size()];
-        int idx = 0;
-        for(int ast : st) ans[idx ++] = ast;
-        return ans;
+        int idx = st.size() - 1;
+        while(!st.isEmpty()) ans[idx --] = st.pop();
+        return ans;        
     }
 }
