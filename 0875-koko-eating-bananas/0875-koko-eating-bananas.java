@@ -1,9 +1,8 @@
 class Solution {
     public int minEatingSpeed(int[] piles, int h) {
-        int s = 1, e = max(piles);
-        int ans = -1;
+        int ans = -1, s = 1, e = max(piles);
         while(s <= e) {
-            int mid = s + (e - s) / 2;
+            int mid = s + (e - s) / 2; // (s + e) / 2;
             if(isPossible(piles, mid, h)) {
                 ans = mid;
                 e = mid - 1;
@@ -12,12 +11,12 @@ class Solution {
         return ans;
     }
     
-    public boolean isPossible(int[] arr, int speed, int time) {
+    public boolean isPossible(int[] arr, int speed, int totalTime) {
         int h = 0;
         for(int b : arr) {
             h += Math.ceil((b * 1.0) / speed);
         }
-        return h <= time;
+        return h <= totalTime;
     }
     
     public int max(int[] arr) {
