@@ -6,10 +6,9 @@ class Solution {
             else {
                 while(!st.isEmpty() && st.peek() > 0 && st.peek() < -ast) st.pop();
                 if(st.isEmpty() || st.peek() < 0) st.push(ast);
-                if(st.peek() == -ast) st.pop();
+                else if(st.peek() == -ast) st.pop();
             }
         }
-        
         int idx = st.size() - 1, ans[] = new int[st.size()];
         while(!st.isEmpty()) ans[idx --] = st.pop();
         return ans;
