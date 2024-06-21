@@ -9,9 +9,9 @@ class Solution {
                 if(st.peek() == -ast) st.pop();
             }
         }
-        int[] ans = new int[st.size()];
-        int idx = 0;
-        for(int ast : st) ans[idx ++] = ast;
-        return ans;        
+        
+        int idx = st.size() - 1, ans[] = new int[st.size()];
+        while(!st.isEmpty()) ans[idx --] = st.pop();
+        return ans;
     }
 }
