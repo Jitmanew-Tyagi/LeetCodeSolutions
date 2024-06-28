@@ -23,15 +23,14 @@ class Node {
 
 class Solution {
     public Node connect(Node root) {
-        if(root == null) return null;
+        if(root == null) return root;
         Queue<Node> que = new LinkedList<>();
         que.add(root);
         while(!que.isEmpty()) {
             int size = que.size();
-            for(int i = 1; i <= size; i ++) {
+            while(size --> 0) {
                 Node out = que.remove();
-                if(i == size) out.next = null;
-                else out.next = que.peek();
+                out.next = size == 0 ? null : que.peek();
                 if(out.left != null) que.add(out.left);
                 if(out.right != null) que.add(out.right);
             }
