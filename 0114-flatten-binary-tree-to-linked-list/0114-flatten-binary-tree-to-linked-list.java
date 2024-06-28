@@ -16,10 +16,12 @@
 class Solution {
     public void flatten(TreeNode root) {
         if(root == null) return;
+        
         if(root.left == null) {
             flatten(root.right);
             return;
         }
+        
         if(root.right == null) {
             flatten(root.left);
             root.right = root.left;
@@ -29,14 +31,12 @@ class Solution {
         
         flatten(root.left);
         flatten(root.right);
-        
-        TreeNode temp = root.right;
+        getTail(root.left).right = root.right;
         root.right = root.left;
-        getTailNode(root.left).right = temp;
         root.left = null;
     }
     
-    public TreeNode getTailNode(TreeNode root) {
+    public TreeNode getTail(TreeNode root) {
         while(root.right != null) root = root.right;
         return root;
     }
