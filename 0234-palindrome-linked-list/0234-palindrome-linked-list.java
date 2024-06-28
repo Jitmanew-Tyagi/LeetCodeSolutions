@@ -25,7 +25,7 @@ class Solution {
     
     public ListNode getMid(ListNode head) {
         ListNode s = head, f = head;
-        while( f.next != null && f.next.next != null) {
+        while(f.next != null && f.next.next != null) {
             s = s.next;
             f = f.next.next;
         }
