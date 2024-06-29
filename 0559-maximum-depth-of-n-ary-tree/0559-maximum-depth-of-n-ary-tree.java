@@ -20,11 +20,10 @@ class Node {
 class Solution {
     public int maxDepth(Node root) {
         if(root == null) return 0;
-        int maxChildHeight = 0;
+        int ans = 0;
         for(Node child : root.children) {
-            int childHt = maxDepth(child);
-            maxChildHeight = Math.max(childHt, maxChildHeight);
+            ans = Math.max(ans, maxDepth(child));
         }
-        return maxChildHeight + 1;
+        return ans + 1;
     }
 }
