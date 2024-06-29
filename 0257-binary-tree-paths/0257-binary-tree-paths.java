@@ -15,15 +15,14 @@
  */
 class Solution {
     public List<String> binaryTreePaths(TreeNode root) {
-        if(root == null) return new ArrayList<>();
-        if(root.left == null && root.right == null) {
-            List<String> base = new ArrayList<>();
-            base.add(root.val + "");
-            return base;
-        }
         List<String> ans = new ArrayList<>();
-        for(String f : binaryTreePaths(root.left)) ans.add(root.val + "->" + f);
-        for(String f : binaryTreePaths(root.right)) ans.add(root.val + "->" + f);
+        if(root == null) return ans;
+        if(root.left == null && root.right == null) {
+            ans.add("" + root.val);
+            return ans;
+        }
+        for(String lp : binaryTreePaths(root.left)) ans.add(root.val + "->" + lp);
+        for(String rp : binaryTreePaths(root.right)) ans.add(root.val + "->" + rp);
         return ans;
     }
 }
