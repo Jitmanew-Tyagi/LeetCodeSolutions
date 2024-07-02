@@ -15,9 +15,10 @@
  */
 class Solution {
     public int[] findMode(TreeNode root) {
-        List<Integer> list = new ArrayList<>(), ans = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
         inorder(root, list);
         
+        List<Integer> arr = new ArrayList<>();
         int cs = 0, ms = 0, cn = 0;
         for(int ele : list) {
             if(ele == cn) cs ++;
@@ -25,17 +26,19 @@ class Solution {
                 cs = 1;
                 cn = ele;
             }
-            
-             if(cs > ms) {
-                ans = new ArrayList<>();
+            if(cs > ms) {
+                arr.clear();
                 ms = cs;
             }
-            if(cs == ms) ans.add(cn);
             
+            if(cs == ms) {
+                arr.add(ele);
+            }
         }
-        int idx = 0, modes[] = new int[ans.size()];
-        for(int ele : ans) modes[idx ++] = ele;
-        return modes;
+        
+        int idx = 0, ans[] = new int[arr.size()];
+        for(int ele : arr) ans[idx ++] = ele;
+        return ans;
     }
     
     public void inorder(TreeNode root, List<Integer> ans) {
@@ -45,14 +48,3 @@ class Solution {
         inorder(root.right, ans);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
