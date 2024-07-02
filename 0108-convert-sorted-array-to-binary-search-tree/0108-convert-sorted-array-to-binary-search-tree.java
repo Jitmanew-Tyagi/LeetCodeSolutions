@@ -18,12 +18,12 @@ class Solution {
         return rec(nums, 0, nums.length - 1);
     }
     
-    public TreeNode rec(int[] arr, int s, int e) {
+    public TreeNode rec(int[] nums, int s, int e) {
         if(s > e) return null;
         int mid = s + (e - s) / 2;
-        TreeNode node = new TreeNode(arr[mid]);
-        node.left = rec(arr, s, mid - 1);
-        node.right = rec(arr, mid + 1, e);
-        return node;
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = rec(nums, s, mid - 1);
+        root.right = rec(nums, mid + 1, e);
+        return root;
     }
 }
