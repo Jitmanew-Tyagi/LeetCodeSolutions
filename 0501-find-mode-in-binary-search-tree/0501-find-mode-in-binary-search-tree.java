@@ -15,27 +15,44 @@
  */
 class Solution {
     public int[] findMode(TreeNode root) {
-        Map<Integer, Integer> hm = new HashMap<>();
-        getMode(root, hm);
-        int maxFreq = 0, idx = 0, count = 0;
-        for(int key : hm.keySet()) {
-            int f = hm.get(key);
-            if(f > maxFreq) {
-                maxFreq = f;
-                count = 1;
-            } else if(f == maxFreq) count ++;
+        List<Integer> list = new ArrayList<>(), ans = new ArrayList<>();
+        inorder(root, list);
+        
+        int cs = 0, ms = 0, cn = 0;
+        for(int ele : list) {
+            if(ele == cn) cs ++;
+            else {
+                cs = 1;
+                cn = ele;
+            }
+            
+             if(cs > ms) {
+                ans = new ArrayList<>();
+                ms = cs;
+            }
+            if(cs == ms) ans.add(cn);
+            
         }
-        int[] ans = new int[count];
-        for(int key : hm.keySet()) {
-            if(hm.get(key) == maxFreq) ans[idx ++] = key;
-        }
-        return ans;
+        int idx = 0, modes[] = new int[ans.size()];
+        for(int ele : ans) modes[idx ++] = ele;
+        return modes;
     }
     
-    public void getMode(TreeNode root, Map<Integer, Integer> hm) {
+    public void inorder(TreeNode root, List<Integer> ans) {
         if(root == null) return;
-        hm.put(root.val, hm.getOrDefault(root.val, 0) + 1);
-        if(root.left != null) getMode(root.left, hm);
-        if(root.right != null) getMode(root.right, hm);
+        inorder(root.left, ans);
+        ans.add(root.val);
+        inorder(root.right, ans);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
