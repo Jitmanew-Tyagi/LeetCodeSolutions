@@ -1,13 +1,12 @@
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
-        int j = 0, n = nums.length;
+        int n = nums.length, ans[] = new int[n - k + 1];
         int[] ngr = ngr(nums);
-        int[] ans = new int[n - k + 1];
-        
-        for(int i = 0; i <= n - k; i ++) {
+        int i = 0, j = 0;
+        while(i < ans.length) {
             if(j < i) j = i;
-            while(ngr[j] < i + k) j = ngr[j];
-            ans[i] = nums[j];
+            while(ngr[j] < n && ngr[j] < i + k) j = ngr[j];
+            ans[i ++] = nums[j];
         }
         return ans;
     }
