@@ -25,10 +25,10 @@
  */
 class Solution {
     public TreeNode sortedListToBST(ListNode head) {
-        return getBST(head, null);
+        return rec(head, null);
     }
     
-    public static TreeNode getBST(ListNode head, ListNode tail) {
+    public static TreeNode rec(ListNode head, ListNode tail) {
         if(head == tail) return null;
         ListNode s = head, f = head;
         while(f != tail && f.next != tail) {
@@ -36,8 +36,8 @@ class Solution {
             f = f.next.next;
         }
         TreeNode root = new TreeNode(s.val);
-        root.left = getBST(head, s);
-        root.right = getBST(s.next, tail);
+        root.left = rec(head, s);
+        root.right = rec(s.next, tail);
         return root;
     }
 }
