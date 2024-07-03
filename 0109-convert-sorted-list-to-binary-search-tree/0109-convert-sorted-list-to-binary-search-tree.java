@@ -25,30 +25,19 @@
  */
 class Solution {
     public TreeNode sortedListToBST(ListNode head) {
-        int size = getSize(head);
-        return getBST(head, 0, size - 1);
+        return getBST(head, null);
     }
     
-    public TreeNode getBST(ListNode head, int s, int e){
-        if(s > e) return null;
-        if(s == e) return new TreeNode(getNodeAt(head, s));
-        int mid = (s + e) % 2 == 0 ? (s + e) / 2 : ((s + e) / 2) + 1;
-        return new TreeNode(getNodeAt(head, mid), getBST(head, s, mid - 1), getBST(head, mid + 1, e));
-    }
-    
-    public int getNodeAt(ListNode head, int idx) {
-        ListNode temp = head;
-        while(idx --> 0) temp = temp.next;
-        return temp.val;
-    }
-    
-    public int getSize(ListNode head) {
-        ListNode temp = head;
-        int size = 0;
-        while(temp != null) {
-            temp = temp.next;
-            size ++;
+    public static TreeNode getBST(ListNode head, ListNode tail) {
+        if(head == tail) return null;
+        ListNode s = head, f = head;
+        while(f != tail && f.next != tail) {
+            s = s.next;
+            f = f.next.next;
         }
-        return size;
+        TreeNode root = new TreeNode(s.val);
+        root.left = getBST(head, s);
+        root.right = getBST(s.next, tail);
+        return root;
     }
 }
