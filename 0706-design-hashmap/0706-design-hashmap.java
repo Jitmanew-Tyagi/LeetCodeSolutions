@@ -1,7 +1,7 @@
 class MyHashMap {
     Node[] hm;
     public MyHashMap() {
-        hm = new Node[10000];
+        hm = new Node[100000];
     }
     
     public void put(int key, int value) {
