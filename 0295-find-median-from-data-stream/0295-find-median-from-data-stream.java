@@ -7,10 +7,9 @@ class MedianFinder {
     
     public void addNum(int num) {
         if(left.isEmpty() || num <= left.peek()) left.add(num);
-        else if(right.isEmpty() || num >= right.peek()) right.add(num);
-        else left.add(num);
+        else right.add(num);
         if(left.size() - right.size() > 1) right.add(left.remove());
-        if(right.size() - left.size() > 1) left.add(right.remove());
+        else if(right.size() - left.size() > 1) left.add(right.remove());
     }
     
     public double findMedian() {
