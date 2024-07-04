@@ -1,20 +1,20 @@
 class MyHashMap {
-    int[] map;
+    int[] hm;
     public MyHashMap() {
-        map = new int[1_000_001];
-        Arrays.fill(map, -1);
+        hm = new int[1_000_001];
+        Arrays.fill(hm, -1);
     }
     
     public void put(int key, int value) {
-        map[key] = value;
+        hm[key] = value;
     }
     
     public int get(int key) {
-        return map[key];
+        return hm[key];
     }
     
     public void remove(int key) {
-        map[key] = -1;
+        hm[key] = -1;
     }
 }
 
