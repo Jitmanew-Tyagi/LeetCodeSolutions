@@ -1,9 +1,8 @@
 class MyHashMap {
     ListNode[] hm;
     public MyHashMap() {
-        hm = new ListNode[100_001];
+        hm = new ListNode[100001];
     }
-    
     public void put(int key, int value) {
         int idx = idx(key);
         if(hm[idx] == null) hm[idx] = new ListNode(-1, -1);
