@@ -6,8 +6,9 @@ class MedianFinder {
     }
     
     public void addNum(int num) {
-        if(left.isEmpty() || num <= left.peek()) left.add(num);
+        if(left.isEmpty() || num < left.peek()) left.add(num);
         else right.add(num);
+        
         if(left.size() - right.size() > 1) right.add(left.remove());
         else if(right.size() - left.size() > 1) left.add(right.remove());
     }
