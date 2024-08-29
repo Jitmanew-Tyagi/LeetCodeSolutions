@@ -1,19 +1,16 @@
 class Solution {
     public int mostWordsFound(String[] sentences) {
-        int maxNoOfWords = 0;
-        for(String s : sentences) {
-            int now = getNoOfWords(s);
-            if(now > maxNoOfWords) maxNoOfWords = now;
+        int max = 0;
+        for(int i=0; i<sentences.length; i++){
+            int count = 1;
+            for(int j=0; j<sentences[i].length(); j++){
+                if(sentences[i].charAt(j)==' '){
+                    count++;
+                }
+            }
+            if(count>max) max = count;
         }
-        return maxNoOfWords;
-    }
-    
-    public int getNoOfWords(String s) {
-        int nos = 0;
-        for(int i = 0; i < s.length(); i ++) {
-            if(s.charAt(i) == ' ') nos ++;
-        }
-        return nos + 1;
+        return max;
     }
     
 }
