@@ -25,14 +25,16 @@ class Solution {
         return ans;
     }
     
-    public int getMaxArea(int[] arr) {
-        int[] lb = nsl(arr), rb = nsr(arr);
-        int n = arr.length, maxArea = 0;
-        for(int i = 0; i < n; i ++) {
-            int width = rb[i] - lb[i] - 1;
-            int area = width * arr[i];
-            if(area > maxArea) maxArea = area;
+    public int getMaxArea(int[] bars) {
+        int[] lb = nsl(bars);
+        int[] rb = nsr(bars);
+        int max = -1;
+        for(int i = 0; i < bars.length; i ++) {
+            int bh = bars[i];
+            int bw = rb[i] - lb[i] - 1;
+            int area = bh * bw;
+            max = Math.max(area, max);
         }
-        return maxArea;
+        return max;
     }
 }
